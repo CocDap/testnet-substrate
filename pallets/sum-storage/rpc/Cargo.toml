@@ -1,0 +1,36 @@
+[package]
+name = "sum-storage-rpc"
+version = "3.0.0"
+edition = "2018"
+authors = ['Substrate DevHub <https://github.com/substrate-developer-hub>']
+repository = 'https://github.com/substrate-developer-hub/recipes'
+description = "A pallet that demonstrates simple RPC for summing numbers"
+license = "GPL-3.0-or-later"
+
+[dependencies]
+codec = { package = "parity-scale-codec", version = "2.0.0" }
+jsonrpc-core = "15.0"
+jsonrpc-core-client = "15.0"
+jsonrpc-derive = "15.0"
+serde = { version = "1.0.64", features = ["derive"], optional = true }
+
+# Substrate packages
+
+sp-api = {default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
+sp-blockchain = {default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
+sp-rpc = {default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
+sp-runtime = {default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
+
+
+# local packages
+
+sum-storage-runtime-api = { version = "3.0.0", path = "../runtime-api", default-features = false }
+
+[features]
+default = ["std"]
+std = [
+  "serde",
+  "sp-api/std",
+  "sp-runtime/std",
+  "sum-storage-runtime-api/std"
+]
